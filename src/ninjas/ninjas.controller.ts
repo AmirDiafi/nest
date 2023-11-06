@@ -9,11 +9,11 @@ import {
   Query,
   UseGuards,
   ValidationPipe,
-} from '@nestjs/common';
-import { CreateNinjaDto } from './dto/create-ninja.dto';
-import { UpdateNinjaDto } from './dto/update-ninja.dto';
-import { NinjasService } from './ninjas.service';
-import { BeltGuard } from 'src/belt/belt.guard';
+} from '@nestjs/common'
+import { CreateNinjaDto } from './dto/create-ninja.dto'
+import { UpdateNinjaDto } from './dto/update-ninja.dto'
+import { NinjasService } from './ninjas.service'
+import { BeltGuard } from 'src/belt/belt.guard'
 
 @Controller('ninjas')
 @UseGuards(BeltGuard)
@@ -22,26 +22,26 @@ export class NinjasController {
   // GET: /ninjas?type="fast" -> []
   @Get()
   getNinjas(@Query('type') type?: string) {
-    return this.ninjaService.getNinjas(type);
+    return this.ninjaService.getNinjas(type)
   }
   // GET: /ninjas/:id -> { ... }
   @Get(':id')
   getOneNinja(@Param('id') id: string) {
-    return this.ninjaService.getOneNinja(id);
+    return this.ninjaService.getOneNinja(id)
   }
   // POST: /ninjas/create -> { ... }
   @Post('create')
   createNinja(@Body(new ValidationPipe()) createNinjaDto: CreateNinjaDto) {
-    return this.ninjaService.createNinja(createNinjaDto);
+    return this.ninjaService.createNinja(createNinjaDto)
   }
   // DELETE: /ninjas/delete/:id -> { ... }
   @Put('update/:id')
   updateNinja(@Param('id') id: string, @Body() updateNinjaDto: UpdateNinjaDto) {
-    return this.ninjaService.updateNinja(id, updateNinjaDto);
+    return this.ninjaService.updateNinja(id, updateNinjaDto)
   }
   // DELETE: /ninjas/delete/:id -> { ... }
   @Delete(':id')
   deleteNinja(@Param('id') id: string) {
-    return this.ninjaService.deleteNinja(id);
+    return this.ninjaService.deleteNinja(id)
   }
 }
